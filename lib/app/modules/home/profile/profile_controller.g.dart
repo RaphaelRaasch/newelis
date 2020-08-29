@@ -72,13 +72,13 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
   final _$formacaoAtom = Atom(name: '_ProfileControllerBase.formacao');
 
   @override
-  List<FormacaoModel> get formacao {
+  ObservableList<FormacaoModel> get formacao {
     _$formacaoAtom.reportRead();
     return super.formacao;
   }
 
   @override
-  set formacao(List<FormacaoModel> value) {
+  set formacao(ObservableList<FormacaoModel> value) {
     _$formacaoAtom.reportWrite(value, super.formacao, () {
       super.formacao = value;
     });

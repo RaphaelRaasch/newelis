@@ -54,6 +54,21 @@ mixin _$AuthController on _AuthControllerBase, Store {
     });
   }
 
+  final _$idAtom = Atom(name: '_AuthControllerBase.id');
+
+  @override
+  String get id {
+    _$idAtom.reportRead();
+    return super.id;
+  }
+
+  @override
+  set id(String value) {
+    _$idAtom.reportWrite(value, super.id, () {
+      super.id = value;
+    });
+  }
+
   final _$authAsyncAction = AsyncAction('_AuthControllerBase.auth');
 
   @override
@@ -61,12 +76,20 @@ mixin _$AuthController on _AuthControllerBase, Store {
     return _$authAsyncAction.run(() => super.auth());
   }
 
+  final _$getProfileAsyncAction = AsyncAction('_AuthControllerBase.getProfile');
+
+  @override
+  Future<dynamic> getProfile(dynamic id) {
+    return _$getProfileAsyncAction.run(() => super.getProfile(id));
+  }
+
   @override
   String toString() {
     return '''
 username: ${username},
 password: ${password},
-loading: ${loading}
+loading: ${loading},
+id: ${id}
     ''';
   }
 }

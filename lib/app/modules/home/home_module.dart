@@ -12,7 +12,7 @@ class HomeModule extends ChildModule {
   List<Bind> get binds => [
         Bind((i) => ProfileController(Modular.get())),
         Bind((i) => DrawerController()),
-        Bind((i) => HomeController(Modular.get())),
+        Bind((i) => HomeController()),
       ];
 
   @override

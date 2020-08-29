@@ -9,17 +9,32 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  final _$getProfileAsyncAction = AsyncAction('_HomeControllerBase.getProfile');
+  final _$homeviewmodelAtom = Atom(name: '_HomeControllerBase.homeviewmodel');
 
   @override
-  Future<dynamic> getProfile() {
-    return _$getProfileAsyncAction.run(() => super.getProfile());
+  ObservableList<HomeViewModel> get homeviewmodel {
+    _$homeviewmodelAtom.reportRead();
+    return super.homeviewmodel;
+  }
+
+  @override
+  set homeviewmodel(ObservableList<HomeViewModel> value) {
+    _$homeviewmodelAtom.reportWrite(value, super.homeviewmodel, () {
+      super.homeviewmodel = value;
+    });
+  }
+
+  final _$loadAsyncAction = AsyncAction('_HomeControllerBase.load');
+
+  @override
+  Future<void> load() {
+    return _$loadAsyncAction.run(() => super.load());
   }
 
   @override
   String toString() {
     return '''
-
+homeviewmodel: ${homeviewmodel}
     ''';
   }
 }

@@ -1,5 +1,6 @@
 import 'package:elis/app/modules/auth/auth_module.dart';
 import 'package:elis/app/modules/caso/caso_module.dart';
+import 'package:elis/app/modules/caso_admin/caso_admin_module.dart';
 import 'package:elis/app/modules/store/profile_store.dart';
 
 import 'app_controller.dart';
@@ -25,6 +26,7 @@ class AppModule extends MainModule {
         Router('/home', module: HomeModule()),
         Router('/caso', module: CasoModule()),
         Router('/curso', module: CursoModule()),
+        Router('/admincaso', module: CasoAdminModule()),
       ];
 
   @override

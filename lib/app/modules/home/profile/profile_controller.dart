@@ -27,7 +27,7 @@ abstract class _ProfileControllerBase with Store {
   @observable
   bool concluido = true;
   @observable
-  List<FormacaoModel> formacao = List();
+  ObservableList<FormacaoModel> formacao = <FormacaoModel>[].asObservable();
   @observable
   String psicologo = '';
 
@@ -52,7 +52,7 @@ abstract class _ProfileControllerBase with Store {
         .get('https://theraasch.com/elis/api/formacao/?psicologo=$psicologo');
     if (response.statusCode == 200) {
       var data = json.decode(response.body) as List;
-      var list = data.forEach((item) {
+      data.forEach((item) {
         formacao.add(FormacaoModel.fromJson(item));
       });
     }
