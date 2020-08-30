@@ -71,7 +71,12 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          userStore.userModel.username,
+                          '${userStore.userModel.firstName} ${userStore.userModel.lastName}',
+                          style: TextStyle(
+                              color: Colors.black, fontSize: sh * 0.025),
+                        ),
+                        Text(
+                          userStore.userModel.email,
                           style: TextStyle(
                               color: Colors.black, fontSize: sh * 0.025),
                         ),
