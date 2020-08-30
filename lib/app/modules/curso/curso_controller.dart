@@ -77,7 +77,7 @@ abstract class _CursoControllerBase with Store {
   }
 
   @action
-  Future deletcursoComentario() async {
+  Future deletcurso(id) async {
     var response =
         await http.delete('https://theraasch.com/elis/api/cursos/$id/');
     getCurso();

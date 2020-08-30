@@ -159,13 +159,12 @@ mixin _$CursoController on _CursoControllerBase, Store {
     return _$setCursoAsyncAction.run(() => super.setCurso());
   }
 
-  final _$deletcursoComentarioAsyncAction =
-      AsyncAction('_CursoControllerBase.deletcursoComentario');
+  final _$deletcursoAsyncAction =
+      AsyncAction('_CursoControllerBase.deletcurso');
 
   @override
-  Future<dynamic> deletcursoComentario() {
-    return _$deletcursoComentarioAsyncAction
-        .run(() => super.deletcursoComentario());
+  Future<dynamic> deletcurso(dynamic id) {
+    return _$deletcursoAsyncAction.run(() => super.deletcurso(id));
   }
 
   @override

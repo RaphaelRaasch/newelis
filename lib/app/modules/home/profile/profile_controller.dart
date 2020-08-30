@@ -53,6 +53,7 @@ abstract class _ProfileControllerBase with Store {
         .get('https://theraasch.com/elis/api/formacao/?psicologo=$psicologo');
     if (response.statusCode == 200) {
       var data = json.decode(response.body) as List;
+      formacao.clear();
       data.forEach((item) {
         formacao.add(FormacaoModel.fromJson(item));
       });
@@ -74,6 +75,7 @@ abstract class _ProfileControllerBase with Store {
             "concluido": false,
             "data_conclusao": "2020-08-05"
           }));
+      getFormacao();
       print(response.statusCode);
       print(response.body);
       card = false;

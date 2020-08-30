@@ -64,44 +64,59 @@ class _CursoPageState extends ModularState<CursoPage, CursoController> {
                       return Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: sw * 0.03, vertical: sh * 0.01),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: sw * 0.03, vertical: sh * 0.02),
-                          decoration:
-                              BoxDecoration(color: Colors.white, boxShadow: [
-                            BoxShadow(
-                              blurRadius: 2,
-                              color: Colors.black26,
-                              offset: Offset(2, 2),
-                            )
-                          ]),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(curso.author),
-                                    Text(curso.data)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: sh * 0.03,
-                                ),
-                                Text(curso.descricao),
-                                SizedBox(
-                                  height: sh * 0.03,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(curso.local),
-                                    Text('Duração ${curso.qtdHoras}')
-                                  ],
-                                )
-                              ]),
+                        child: GestureDetector(
+                          onTap: () {
+                            Modular.link
+                                .pushNamed('/commentcurso', arguments: curso);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: sw * 0.03, vertical: sh * 0.02),
+                            decoration:
+                                BoxDecoration(color: Colors.white, boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                color: Colors.black26,
+                                offset: Offset(2, 2),
+                              )
+                            ]),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(curso.author),
+                                      Text(curso.data)
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: sh * 0.03,
+                                  ),
+                                  Text(curso.descricao),
+                                  SizedBox(
+                                    height: sh * 0.03,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(curso.local),
+                                      Text('Duração ${curso.qtdHoras}'),
+                                      curso.author == user.userModel.username
+                                          ? IconButton(
+                                              icon: Icon(Icons.delete),
+                                              color: Colors.red,
+                                              onPressed: () {
+                                                controller.deletcurso(curso.id);
+                                              },
+                                            )
+                                          : SizedBox(),
+                                    ],
+                                  )
+                                ]),
+                          ),
                         ),
                       );
                     },
@@ -124,15 +139,16 @@ class _CursoPageState extends ModularState<CursoPage, CursoController> {
                           padding: EdgeInsets.symmetric(vertical: sh * 0.01),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(sw),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 2,
-                                    color: Colors.grey,
-                                    offset: Offset(2, 2),
-                                  )
-                                ]),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(sw),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 2,
+                                  color: Colors.grey,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                            ),
                             padding:
                                 EdgeInsets.symmetric(horizontal: sw * 0.05),
                             child: TextFormField(
