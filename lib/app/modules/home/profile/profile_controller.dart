@@ -30,6 +30,8 @@ abstract class _ProfileControllerBase with Store {
   ObservableList<FormacaoModel> formacao = <FormacaoModel>[].asObservable();
   @observable
   String psicologo = '';
+  @observable
+  String comboTitulo = '';
 
   @observable
   bool card = false;
@@ -70,7 +72,7 @@ abstract class _ProfileControllerBase with Store {
           body: json.encode({
             "psicologo": profileStore.profileModel.id,
             "nome": nome,
-            "titulo": titulo,
+            "titulo": comboTitulo,
             "instituicao": instituicao,
             "concluido": false,
             "data_conclusao": "2020-08-05"

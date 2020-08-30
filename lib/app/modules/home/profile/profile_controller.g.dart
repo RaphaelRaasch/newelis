@@ -99,6 +99,21 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
     });
   }
 
+  final _$comboTituloAtom = Atom(name: '_ProfileControllerBase.comboTitulo');
+
+  @override
+  String get comboTitulo {
+    _$comboTituloAtom.reportRead();
+    return super.comboTitulo;
+  }
+
+  @override
+  set comboTitulo(String value) {
+    _$comboTituloAtom.reportWrite(value, super.comboTitulo, () {
+      super.comboTitulo = value;
+    });
+  }
+
   final _$cardAtom = Atom(name: '_ProfileControllerBase.card');
 
   @override
@@ -147,6 +162,7 @@ instituicao: ${instituicao},
 concluido: ${concluido},
 formacao: ${formacao},
 psicologo: ${psicologo},
+comboTitulo: ${comboTitulo},
 card: ${card}
     ''';
   }

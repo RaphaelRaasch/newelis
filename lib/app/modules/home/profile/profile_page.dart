@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:mask_shifter/mask_shifter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'profile_controller.dart';
 
@@ -121,7 +122,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                       padding: EdgeInsets.symmetric(
                           vertical: sh * 0.03, horizontal: sw * 0.03),
                       height: sh * 0.6,
-                      color: Colors.black54.withOpacity(0.9),
+                      color: Colors.white,
                       child: Column(
                         children: [
                           Padding(
@@ -152,40 +153,16 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                             padding: EdgeInsets.symmetric(vertical: sh * 0.01),
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(sw),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 2,
-                                      color: Colors.grey,
-                                      offset: Offset(2, 2),
-                                    )
-                                  ]),
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: sw * 0.05),
-                              child: TextFormField(
-                                onChanged: (value) {
-                                  controller.titulo = value;
-                                },
-                                decoration: InputDecoration(
-                                    hintText: 'Titulo',
-                                    border: InputBorder.none),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(sw),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 2,
+                                    color: Colors.grey,
+                                    offset: Offset(2, 2),
+                                  )
+                                ],
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: sh * 0.01),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(sw),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 2,
-                                      color: Colors.grey,
-                                      offset: Offset(2, 2),
-                                    )
-                                  ]),
                               padding:
                                   EdgeInsets.symmetric(horizontal: sw * 0.05),
                               child: TextFormField(
@@ -195,6 +172,71 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                                 decoration: InputDecoration(
                                     hintText: 'Instituição',
                                     border: InputBorder.none),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: sh * 0.01),
+                            child: Container(
+                                width: sw,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(sw),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 2,
+                                        color: Colors.grey,
+                                        offset: Offset(2, 2),
+                                      )
+                                    ]),
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: sw * 0.05),
+                                child: TextField(
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) {
+                                    //controller.qtdhoras = value;
+                                  },
+                                  inputFormatters: [
+                                    MaskedTextInputFormatterShifter(
+                                      maskONE: "XX/XX/XXXX",
+                                      maskTWO: "XX/XX/XXXX",
+                                    ),
+                                  ],
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Data da Formação',
+                                  ),
+                                )),
+                          ),
+                          GFAccordion(
+                            title: controller.comboTitulo.isEmpty
+                                ? 'Titulo'
+                                : controller.comboTitulo,
+                            contentChild: Container(
+                              width: sw * 0.4,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  FlatButton(
+                                    onPressed: () {
+                                      controller.comboTitulo = 'GRADUAÇÃO';
+                                    },
+                                    child: Text('Graduação'),
+                                  ),
+                                  FlatButton(
+                                    onPressed: () {
+                                      controller.comboTitulo = 'Mestrado';
+                                    },
+                                    child: Text('Mestrado'),
+                                  ),
+                                  FlatButton(
+                                    onPressed: () {
+                                      controller.comboTitulo = 'DOUTORADO';
+                                    },
+                                    child: Text('Doutorado'),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
