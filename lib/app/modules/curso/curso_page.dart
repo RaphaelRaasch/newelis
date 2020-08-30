@@ -53,122 +53,100 @@ class _CursoPageState extends ModularState<CursoPage, CursoController> {
               child: Text('Nehnum curso Cadastrado'),
             );
           } else {
-            return Stack(
-              children: [
-                Container(
-                  height: sh,
-                  child: ListView.builder(
-                    itemCount: controller.curso.length,
-                    itemBuilder: (context, index) {
-                      var curso = controller.curso[index];
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: sw * 0.03, vertical: sh * 0.01),
-                        child: GestureDetector(
-                          onTap: () {
-                            Modular.link
-                                .pushNamed('/commentcurso', arguments: curso);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: sw * 0.03, vertical: sh * 0.02),
-                            decoration:
-                                BoxDecoration(color: Colors.white, boxShadow: [
-                              BoxShadow(
-                                blurRadius: 2,
-                                color: Colors.black26,
-                                offset: Offset(2, 2),
-                              )
-                            ]),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(curso.author),
-                                      Text(curso.data)
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: sh * 0.03,
-                                  ),
-                                  Text(curso.descricao),
-                                  SizedBox(
-                                    height: sh * 0.03,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(curso.local),
-                                      Text('Duração ${curso.qtdHoras}'),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      curso.author == user.userModel.username
-                                          ? IconButton(
-                                              icon: Icon(Icons.delete),
-                                              color: Colors.red,
-                                              onPressed: () {
-                                                controller.deletcurso(curso.id);
-                                              },
-                                            )
-                                          : SizedBox(),
-                                    ],
-                                  )
-                                ]),
+            return SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Container(
+                    height: sh,
+                    child: ListView.builder(
+                      itemCount: controller.curso.length,
+                      itemBuilder: (context, index) {
+                        var curso = controller.curso[index];
+                        return Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: sw * 0.03, vertical: sh * 0.01),
+                          child: GestureDetector(
+                            onTap: () {
+                              Modular.link
+                                  .pushNamed('/commentcurso', arguments: curso);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: sw * 0.03, vertical: sh * 0.02),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 2,
+                                      color: Colors.black26,
+                                      offset: Offset(2, 2),
+                                    )
+                                  ]),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(curso.author),
+                                        Text(curso.data)
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: sh * 0.03,
+                                    ),
+                                    Text(curso.descricao),
+                                    SizedBox(
+                                      height: sh * 0.03,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(curso.local),
+                                        Text('Duração ${curso.qtdHoras}'),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        curso.author == user.userModel.username
+                                            ? IconButton(
+                                                icon: Icon(Icons.delete),
+                                                color: Colors.red,
+                                                onPressed: () {
+                                                  controller
+                                                      .deletcurso(curso.id);
+                                                },
+                                              )
+                                            : SizedBox(),
+                                      ],
+                                    )
+                                  ]),
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.elasticOut,
-                  bottom: controller.card == true ? 0 : -sh * 0.8,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: sh * 0.03, horizontal: sw * 0.03),
-                    height: sh * 0.7,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: sh * 0.01),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(sw),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 2,
-                                  color: Colors.grey,
-                                  offset: Offset(2, 2),
-                                ),
-                              ],
-                            ),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: sw * 0.05),
-                            child: TextFormField(
-                              onChanged: (value) {
-                                controller.cursonome = value;
-                              },
-                              decoration: InputDecoration(
-                                  hintText: 'Nome', border: InputBorder.none),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: sh * 0.01),
-                          child: Container(
-                            decoration: BoxDecoration(
+                  AnimatedPositioned(
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.elasticOut,
+                    bottom: controller.card == true ? 0 : -sh * 0.8,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: sh * 0.03, horizontal: sw * 0.03),
+                      height: sh * 0.7,
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: sh * 0.01),
+                            child: Container(
+                              decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(sw),
                                 boxShadow: [
@@ -176,163 +154,198 @@ class _CursoPageState extends ModularState<CursoPage, CursoController> {
                                     blurRadius: 2,
                                     color: Colors.grey,
                                     offset: Offset(2, 2),
-                                  )
-                                ]),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: sw * 0.05),
-                            child: TextFormField(
-                              onChanged: (value) {
-                                controller.cursodescricao = value;
-                              },
-                              decoration: InputDecoration(
-                                  hintText: 'Descrição',
-                                  border: InputBorder.none),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: sh * 0.01),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(sw),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 2,
-                                    color: Colors.grey,
-                                    offset: Offset(2, 2),
-                                  )
-                                ]),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: sw * 0.05),
-                            child: TextFormField(
-                              onChanged: (value) {
-                                controller.local = value;
-                              },
-                              decoration: InputDecoration(
-                                hintText: 'Local',
-                                border: InputBorder.none,
+                                  ),
+                                ],
+                              ),
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: sw * 0.05),
+                              child: TextFormField(
+                                onChanged: (value) {
+                                  controller.cursonome = value;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: 'Nome', border: InputBorder.none),
                               ),
                             ),
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: sh * 0.01),
-                              child: Container(
-                                  width: sw * 0.4,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(sw),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 2,
-                                          color: Colors.grey,
-                                          offset: Offset(2, 2),
-                                        )
-                                      ]),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: sw * 0.05),
-                                  child: TextField(
-                                    keyboardType: TextInputType.number,
-                                    onChanged: (value) {
-                                      controller.qtdhoras = value;
-                                    },
-                                    inputFormatters: [
-                                      MaskedTextInputFormatterShifter(
-                                        maskONE: "XX:XX",
-                                        maskTWO: "XX:XX",
-                                      ),
-                                    ],
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Tempo',
-                                    ),
-                                  )),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: sh * 0.01),
+                            child: Container(
+                              height: sh * 0.3,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 2,
+                                    color: Colors.grey,
+                                    offset: Offset(2, 2),
+                                  ),
+                                ],
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(
+                                  sh * 0.02,
+                                ),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: sw * 0.03, vertical: sh * 0.01),
+                              child: TextFormField(
+                                minLines: null,
+                                maxLines: null,
+                                maxLength: 250,
+                                expands: true,
+                                onChanged: (value) {
+                                  controller.cursodescricao = value;
+                                },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Descrição',
+                                ),
+                              ),
                             ),
-                            Padding(
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: sh * 0.01),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(sw),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 2,
+                                      color: Colors.grey,
+                                      offset: Offset(2, 2),
+                                    )
+                                  ]),
                               padding:
-                                  EdgeInsets.symmetric(vertical: sh * 0.01),
-                              child: Container(
-                                  width: sw * 0.4,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(sw),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 2,
-                                          color: Colors.grey,
-                                          offset: Offset(2, 2),
-                                        )
-                                      ]),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: sw * 0.05),
-                                  child: TextField(
-                                    keyboardType: TextInputType.number,
-                                    onChanged: (value) {
-                                      controller.data = value;
-                                    },
-                                    inputFormatters: [
-                                      MaskedTextInputFormatterShifter(
-                                        maskONE: "XX/XX",
-                                        maskTWO: "XX/XX",
-                                      ),
-                                    ],
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Data',
-                                    ),
-                                  )),
+                                  EdgeInsets.symmetric(horizontal: sw * 0.05),
+                              child: TextFormField(
+                                onChanged: (value) {
+                                  controller.local = value;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: 'Local',
+                                  border: InputBorder.none,
+                                ),
+                              ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: sh * 0.01),
-                              child: Container(
-                                  width: sw * 0.4,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(sw),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 2,
-                                          color: Colors.grey,
-                                          offset: Offset(2, 2),
-                                        )
-                                      ]),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: sw * 0.05),
-                                  child: TextField(
-                                    keyboardType: TextInputType.number,
-                                    onChanged: (value) {
-                                      controller.hora = value;
-                                    },
-                                    inputFormatters: [
-                                      MaskedTextInputFormatterShifter(
-                                        maskONE: "XX:XX",
-                                        maskTWO: "XX:XX",
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.symmetric(vertical: sh * 0.01),
+                                child: Container(
+                                    width: sw * 0.4,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(sw),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 2,
+                                            color: Colors.grey,
+                                            offset: Offset(2, 2),
+                                          )
+                                        ]),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: sw * 0.05),
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (value) {
+                                        controller.qtdhoras = value;
+                                      },
+                                      inputFormatters: [
+                                        MaskedTextInputFormatterShifter(
+                                          maskONE: "XX:XX",
+                                          maskTWO: "XX:XX",
+                                        ),
+                                      ],
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'Tempo',
                                       ),
-                                    ],
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Horario',
-                                    ),
-                                  )),
-                            ),
-                          ],
-                        )
-                      ],
+                                    )),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.symmetric(vertical: sh * 0.01),
+                                child: Container(
+                                    width: sw * 0.4,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(sw),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 2,
+                                            color: Colors.grey,
+                                            offset: Offset(2, 2),
+                                          )
+                                        ]),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: sw * 0.05),
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (value) {
+                                        controller.data = value;
+                                      },
+                                      inputFormatters: [
+                                        MaskedTextInputFormatterShifter(
+                                          maskONE: "XX/XX",
+                                          maskTWO: "XX/XX",
+                                        ),
+                                      ],
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'Data',
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.symmetric(vertical: sh * 0.01),
+                                child: Container(
+                                    width: sw * 0.4,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(sw),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 2,
+                                            color: Colors.grey,
+                                            offset: Offset(2, 2),
+                                          )
+                                        ]),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: sw * 0.05),
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (value) {
+                                        controller.hora = value;
+                                      },
+                                      inputFormatters: [
+                                        MaskedTextInputFormatterShifter(
+                                          maskONE: "XX:XX",
+                                          maskTWO: "XX:XX",
+                                        ),
+                                      ],
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'Horario',
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             );
           }
         },

@@ -35,12 +35,11 @@ class _CommentPageState extends ModularState<CommentPage, CommentController> {
         backgroundColor: Colors.black54,
         title: Text(widget.comment.nome),
         actions: [
-          FlatButton(
-            onPressed: () {
-              controller.setCursoComentario();
-            },
-            child: Text('curso'),
-          )
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                controller.setCursoComentario(user.userModel.username);
+              })
         ],
       ),
       body: Observer(
@@ -180,49 +179,34 @@ class _CommentPageState extends ModularState<CommentPage, CommentController> {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: sh * 0.01),
                           child: Container(
+                            height: sh * 0.3,
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(sw),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 2,
-                                    color: Colors.grey,
-                                    offset: Offset(2, 2),
-                                  )
-                                ]),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: sw * 0.05),
-                            child: TextFormField(
-                              onChanged: (value) {
-                                controller.nome = value;
-                              },
-                              decoration: InputDecoration(
-                                  hintText: 'Nome', border: InputBorder.none),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 2,
+                                  color: Colors.grey,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(
+                                sh * 0.02,
+                              ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: sh * 0.01),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(sw),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 2,
-                                    color: Colors.grey,
-                                    offset: Offset(2, 2),
-                                  )
-                                ]),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: sw * 0.05),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: sw * 0.03, vertical: sh * 0.01),
                             child: TextFormField(
+                              minLines: null,
+                              maxLines: null,
+                              maxLength: 250,
+                              expands: true,
                               onChanged: (value) {
                                 controller.descricao = value;
                               },
                               decoration: InputDecoration(
-                                  hintText: 'Descrição',
-                                  border: InputBorder.none),
+                                border: InputBorder.none,
+                                hintText: 'Descrição',
+                              ),
                             ),
                           ),
                         ),

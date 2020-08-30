@@ -117,8 +117,7 @@ class _CasoPageState extends ModularState<CasoPage, CasoController> {
                                                 onPressed: () {
                                                   controller.idcaso =
                                                       caso.id.toString();
-                                                  controller
-                                                      .deletCaso();
+                                                  controller.deletCaso();
                                                 },
                                               ),
                                             ),
@@ -174,25 +173,34 @@ class _CasoPageState extends ModularState<CasoPage, CasoController> {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: sh * 0.01),
                           child: Container(
+                            height: sh * 0.3,
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(sw),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 2,
-                                    color: Colors.grey,
-                                    offset: Offset(2, 2),
-                                  )
-                                ]),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: sw * 0.05),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 2,
+                                  color: Colors.grey,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(
+                                sh * 0.02,
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: sw * 0.03, vertical: sh * 0.01),
                             child: TextFormField(
+                              minLines: null,
+                              maxLines: null,
+                              maxLength: 250,
+                              expands: true,
                               onChanged: (value) {
                                 controller.casodescricao = value;
                               },
                               decoration: InputDecoration(
-                                  hintText: 'Descrição',
-                                  border: InputBorder.none),
+                                border: InputBorder.none,
+                                hintText: 'Descrição',
+                              ),
                             ),
                           ),
                         ),

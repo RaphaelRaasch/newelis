@@ -52,7 +52,7 @@ abstract class _CommentsControllerBase with Store {
               body: json.encode(
                 {
                   "caso": id,
-                  "nome": nome,
+                  "nome": 'nome',
                   "descricao": descricao,
                   "author": user.userModel.username,
                   "status": true

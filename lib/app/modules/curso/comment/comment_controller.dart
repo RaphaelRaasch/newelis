@@ -40,7 +40,7 @@ abstract class _CommentControllerBase with Store {
   }
 
   @action
-  Future setCursoComentario() async {
+  Future setCursoComentario(autor) async {
     if (card == false) {
       card = true;
     } else {
@@ -49,9 +49,9 @@ abstract class _CommentControllerBase with Store {
               headers: {"Content-Type": "application/json"},
               body: json.encode({
                 "curso": idcurso,
-                "nome": nome,
+                "nome": 'nome',
                 "descricao": descricao,
-                "author": "Gabriela",
+                "author": autor,
                 "status": true
               }));
       print(response.statusCode);

@@ -110,9 +110,9 @@ mixin _$CommentController on _CommentControllerBase, Store {
       AsyncAction('_CommentControllerBase.setCursoComentario');
 
   @override
-  Future<dynamic> setCursoComentario() {
+  Future<dynamic> setCursoComentario(dynamic autor) {
     return _$setCursoComentarioAsyncAction
-        .run(() => super.setCursoComentario());
+        .run(() => super.setCursoComentario(autor));
   }
 
   final _$deleteCasoCursoAsyncAction =
