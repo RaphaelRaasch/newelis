@@ -32,6 +32,8 @@ abstract class _ProfileControllerBase with Store {
   String psicologo = '';
   @observable
   String comboTitulo = '';
+  @observable
+  String data = '';
 
   @observable
   bool card = false;
@@ -75,7 +77,7 @@ abstract class _ProfileControllerBase with Store {
             "titulo": comboTitulo,
             "instituicao": instituicao,
             "concluido": false,
-            "data_conclusao": "2020-08-05"
+            "data_conclusao": data
           }));
       getFormacao();
       print(response.statusCode);

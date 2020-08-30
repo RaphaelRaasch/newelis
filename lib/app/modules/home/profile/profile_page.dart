@@ -199,7 +199,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                                 child: TextField(
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
-                                    controller.qtdhoras = value;
+                                    controller.data = value;
                                   },
                                   inputFormatters: [
                                     MaskedTextInputFormatterShifter(
