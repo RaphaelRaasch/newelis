@@ -60,6 +60,8 @@ abstract class _AuthControllerBase with Store {
       var data = json.decode(response.body);
       var profile = ProfileModel.fromJson(data);
       profileStore.setProfile(profile);
+      print(userStore.userModel.firstName);
+      print(userStore.userModel.lastName);
     }
   }
 }

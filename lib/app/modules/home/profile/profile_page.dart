@@ -35,7 +35,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
     return Scaffold(
       appBar: GFAppBar(
         backgroundColor: Colors.black54,
-        title: Text(userStore.userModel.username),
+        title: Text('Profile'),
         actions: <Widget>[
           GFIconButton(
             icon: Icon(
@@ -199,7 +199,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                                 child: TextField(
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
-                                    //controller.qtdhoras = value;
+                                    controller.qtdhoras = value;
                                   },
                                   inputFormatters: [
                                     MaskedTextInputFormatterShifter(
@@ -225,13 +225,13 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                                 children: [
                                   FlatButton(
                                     onPressed: () {
-                                      controller.comboTitulo = 'GRADUAÇÃO';
+                                      controller.comboTitulo = 'GRADUACAO';
                                     },
                                     child: Text('Graduação'),
                                   ),
                                   FlatButton(
                                     onPressed: () {
-                                      controller.comboTitulo = 'Mestrado';
+                                      controller.comboTitulo = 'MESTRADO';
                                     },
                                     child: Text('Mestrado'),
                                   ),
