@@ -5,6 +5,8 @@ class CursoModel {
   String author;
   String qtdHoras;
   String local;
+  String data;
+  String hora;
   bool status;
   String createdAt;
   String modifiedAt;
@@ -16,6 +18,8 @@ class CursoModel {
       this.author,
       this.qtdHoras,
       this.local,
+      this.data,
+      this.hora,
       this.status,
       this.createdAt,
       this.modifiedAt});
@@ -27,6 +31,8 @@ class CursoModel {
     author = json['author'];
     qtdHoras = json['qtd_horas'];
     local = json['local'];
+    data = json['data'];
+    hora = json['hora'];
     status = json['status'];
     createdAt = json['created_at'];
     modifiedAt = json['modified_at'];
@@ -40,6 +46,8 @@ class CursoModel {
     data['author'] = this.author;
     data['qtd_horas'] = this.qtdHoras;
     data['local'] = this.local;
+    data['data'] = this.data;
+    data['hora'] = this.hora;
     data['status'] = this.status;
     data['created_at'] = this.createdAt;
     data['modified_at'] = this.modifiedAt;

@@ -22,6 +22,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
 
   @override
   void initState() {
+    controller.psicologo = profileStore.profileModel.id.toString();
     controller.getFormacao();
     super.initState();
   }

@@ -48,6 +48,7 @@ abstract class _ProfileControllerBase with Store {
 
   @action
   Future getFormacao() async {
+    print(psicologo);
     var response = await http
         .get('https://theraasch.com/elis/api/formacao/?psicologo=$psicologo');
     if (response.statusCode == 200) {

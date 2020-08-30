@@ -49,100 +49,61 @@ class _CursoPageState extends ModularState<CursoPage, CursoController> {
       body: Observer(
         builder: (context) {
           if (controller.curso.isEmpty) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+              child: Text('Nehnum curso Cadastrado'),
+            );
           } else {
             return Stack(
               children: [
                 Container(
+                  height: sh,
                   child: ListView.builder(
                     itemCount: controller.curso.length,
                     itemBuilder: (context, index) {
                       var curso = controller.curso[index];
-                      if (curso.status == false) {
-                        return Container(
-                          height: sh * 0.9,
-                          child: Center(
-                            child: Text('Ainda não existem cursos cadastrados'),
-                          ),
-                        );
-                      } else {
-                        return GestureDetector(
-                          onTap: () {
-                            Modular.link
-                                .pushNamed('/commentcurso', arguments: curso);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: sw * 0.01,
-                              vertical: sh * 0.01,
-                            ),
-                            child: Container(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: sh * 0.02),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 2,
-                                      color: Colors.black26,
-                                      offset: Offset(0, 3),
-                                    )
-                                  ]),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: sw * 0.1),
-                                    height: sh * 0.05,
-                                    width: sw,
-                                    color: Colors.white,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(curso.nome),
-                                        Text(curso.createdAt),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    width: sw,
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: sh * 0.02,
-                                        horizontal: sw * 0.06),
-                                    color: Colors.white,
-                                    child: Text(curso.descricao),
-                                  ),
-                                  curso.author == user.userModel.username
-                                      ? Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Container(
-                                              child: IconButton(
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                  color: Colors.red,
-                                                ),
-                                                onPressed: () {
-                                                  controller.id =
-                                                      curso.id.toString();
-                                                  controller
-                                                      .deletcursoComentario();
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      : Text(curso.author)
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: sw * 0.03, vertical: sh * 0.01),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: sw * 0.03, vertical: sh * 0.02),
+                          decoration:
+                              BoxDecoration(color: Colors.white, boxShadow: [
+                            BoxShadow(
+                              blurRadius: 2,
+                              color: Colors.black26,
+                              offset: Offset(2, 2),
+                            )
+                          ]),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(curso.author),
+                                    Text(curso.data)
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: sh * 0.03,
+                                ),
+                                Text(curso.descricao),
+                                SizedBox(
+                                  height: sh * 0.03,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(curso.local),
+                                    Text('Duração ${curso.qtdHoras}')
+                                  ],
+                                )
+                              ]),
+                        ),
+                      );
                     },
                   ),
                 ),

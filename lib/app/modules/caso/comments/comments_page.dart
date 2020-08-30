@@ -65,7 +65,11 @@ class _CommentsPageState
                                   return SizedBox();
                                 } else {
                                   return ListTile(
-                                    title: Text(comentario.author),
+                                    title: Row(
+                                      children: [
+                                        Text(comentario.author),
+                                      ],
+                                    ),
                                     subtitle: Text(comentario.descricao),
                                     trailing: comentario.author ==
                                             user.userModel.username
@@ -173,8 +177,3 @@ class _CommentsPageState
     );
   }
 }
-
-
-
-
-

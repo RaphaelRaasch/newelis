@@ -11,7 +11,7 @@ class DrawerWidget extends StatelessWidget {
     double sh = MediaQuery.of(context).size.height;
     double sw = MediaQuery.of(context).size.width;
     return GFDrawer(
-      child: usr.userModel.staff == false
+      child: usr.userModel.staff == true
           ? ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
