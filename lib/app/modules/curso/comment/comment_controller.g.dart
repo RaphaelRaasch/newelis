@@ -115,6 +115,14 @@ mixin _$CommentController on _CommentControllerBase, Store {
         .run(() => super.setCursoComentario());
   }
 
+  final _$deleteCasoCursoAsyncAction =
+      AsyncAction('_CommentControllerBase.deleteCasoCurso');
+
+  @override
+  Future<dynamic> deleteCasoCurso(dynamic id) {
+    return _$deleteCasoCursoAsyncAction.run(() => super.deleteCasoCurso(id));
+  }
+
   @override
   String toString() {
     return '''

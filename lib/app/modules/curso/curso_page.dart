@@ -104,6 +104,11 @@ class _CursoPageState extends ModularState<CursoPage, CursoController> {
                                     children: [
                                       Text(curso.local),
                                       Text('Duração ${curso.qtdHoras}'),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
                                       curso.author == user.userModel.username
                                           ? IconButton(
                                               icon: Icon(Icons.delete),
@@ -131,7 +136,7 @@ class _CursoPageState extends ModularState<CursoPage, CursoController> {
                   child: Container(
                     padding: EdgeInsets.symmetric(
                         vertical: sh * 0.03, horizontal: sw * 0.03),
-                    height: sh * 0.5,
+                    height: sh * 0.7,
                     color: Colors.white,
                     child: Column(
                       children: [

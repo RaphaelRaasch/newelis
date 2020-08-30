@@ -64,4 +64,11 @@ abstract class _CommentControllerBase with Store {
       }
     }
   }
+
+  @action
+  Future deleteCasoCurso(id) async {
+    var response = await http
+        .delete('https://theraasch.com/elis/api/curso-comentarios/$id');
+    getcurso();
+  }
 }

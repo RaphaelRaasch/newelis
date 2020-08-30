@@ -82,9 +82,9 @@ class _CommentPageState extends ModularState<CommentPage, CommentController> {
                                             icon: Icon(Icons.delete),
                                             color: Colors.red,
                                             onPressed: () {
-                                              /*controller.commentId =
-                                                  comentario.id.toString();
-                                              controller.deleteCasoComentario();*/
+                                              controller.deleteCasoCurso(
+                                                comentario.id,
+                                              );
                                             },
                                           )
                                         : SizedBox(),
